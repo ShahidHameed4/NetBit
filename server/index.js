@@ -8,6 +8,8 @@ import authRoutes from "./routes/auth.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
+import actors from "./routes/Actor.js";
+import movieDetails from "./routes/MovieDetail.js";
 
 
 const app = express();
@@ -32,6 +34,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/videos", videoRoutes);
 app.use("/api/comments", commentRoutes);
+
+app.use("/api/Actor", actors);
+app.use("/api/Movie", movieDetails);
 
 //error handler
 app.use((err, req, res, next) => {
