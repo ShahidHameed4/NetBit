@@ -1,16 +1,17 @@
 import express from "express";
 import ActorController from "../controllers/Actor.js";
+import { verifyToken } from "../verifyTokenAdmin.js";
 
 const router = express.Router();
 
 // Create a new actor
-router.post("/addActor", ActorController.createActor);
+router.post("/addActor",verifyToken, ActorController.createActor);
 
 // Retrieve all actors
-router.get("/allActors", ActorController.getAllActors);
+router.get("/allActors",verifyToken, ActorController.getAllActors);
 
 // Retrieve a specific actor by ID
-router.get("/:id", ActorController.getActorById);
+router.get("/:id",verifyToken, ActorController.getActorById);
 
 // Update an actor by ID
 router.put("/:id", ActorController.updateActor);

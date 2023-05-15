@@ -11,6 +11,8 @@ import cors from "cors";
 import actors from "./routes/Actor.js";
 import movieDetails from "./routes/MovieDetail.js";
 
+import AdminRouter from "./routes/authAdmin.js";
+
 
 const app = express();
 app.use(cors());
@@ -36,7 +38,8 @@ app.use("/api/videos", videoRoutes);
 app.use("/api/comments", commentRoutes);
 
 app.use("/api/Actor", actors);
-app.use("/api/Movie", movieDetails);
+app.use("/api/movie", movieDetails);
+app.use("/api/admin", AdminRouter);
 
 //error handler
 app.use((err, req, res, next) => {

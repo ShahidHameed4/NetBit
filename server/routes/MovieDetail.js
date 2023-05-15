@@ -4,10 +4,10 @@ import MovieDetailsController from "../controllers/MovieDetail.js";
 const router = express.Router();
 
 // Add an actor to a movie
-router.post("/:movieId/addRole", MovieDetailsController.addActor);
+router.post("/addRole/:movieId", MovieDetailsController.addActor);
 
 // Delete an actor from a movie
-router.delete("/:movieId/removeRole", MovieDetailsController.deleteActor);
+router.delete("/removeRole/:movieId", MovieDetailsController.deleteActor);
 
 // Update an actor for a movie
 router.put("/:movieId/updateRole", MovieDetailsController.updateActor);

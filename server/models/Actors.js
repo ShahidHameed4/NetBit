@@ -13,7 +13,7 @@ const ActorSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    autoBiograghy: {
+    bio: {
         type: String,
         required: true,
     },

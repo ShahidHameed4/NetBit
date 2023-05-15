@@ -3,12 +3,12 @@ import Actor from "../models/Actors.js";
 class ActorController {
   // Create a new actor
   static createActor(req, res) {
-    const { name, age, image, autoBiography } = req.body;
+    const { name, age, image, bio } = req.body;
     const newActor = new Actor({
       name,
       age,
       image,
-      autoBiography,
+      bio,
     });
 
     newActor
@@ -17,7 +17,8 @@ class ActorController {
         res.status(201).json(actor);
       })
       .catch((error) => {
-        res.status(500).json({ error: "Failed to create actor" });
+        
+        res.status(500).json({ error: "Failed to create actor", error });
       });
   }
 
