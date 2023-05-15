@@ -15,19 +15,8 @@ const UserSchema = new mongoose.Schema(
     password: {
       type: String,
     },
-    img: {
-      type: String,
-    },
-    subscription:{  
-      type: String,
-      default: "free",
-    },
-    fromGoogle: {
-      type: Boolean,
-      default: false,
-    },
   },
   { timestamps: true }
 );
 
-export default mongoose.model("User", UserSchema);
+export default mongoose.model("Admin", UserSchema);
