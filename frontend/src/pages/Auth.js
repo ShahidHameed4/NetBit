@@ -14,7 +14,7 @@ import image1 from '../assets/img/register_bg_2.png';
 
 export default function Auth() {
   return (
-    <>
+    <div >
     
       <Navbar transparent />
       <main>
@@ -28,11 +28,10 @@ export default function Auth() {
           ></div>
           <Switch>
             <Route path="/auth/login" exact component={Login} />
-            <Route path="/auth/register" exact component={Register} />
             <Redirect from="/auth" to="/auth/login" />
           </Switch>
         </section>
       </main>
-    </>
+    </div>
   );
 }

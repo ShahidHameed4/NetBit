@@ -215,26 +215,18 @@ export default function Login() {
             </div>
             <div className="flex flex-wrap mt-6 relative">
               <div className="w-1/2">
-                <a
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                  className="text-blueGray-200"
-                >
-                  <small>Forgot password?</small>
-                </a>
-              </div>
-              <div className="w-1/2 text-right">
-                <Link to="/auth/register" className="text-blueGray-200">
-                  <small>Create new account</small>
+              <Link to="/forgot-password" className="text-blueGray-200">
+                  <small>Forgot Password</small>
                 </Link>
               </div>
-              <button
+          
+              {/* <button
         className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
         type="button"
         onClick={() => setShowModal(true)}
       >
         Open regular modal
-      </button>
+      </button> */}
       
             </div>
           </div>

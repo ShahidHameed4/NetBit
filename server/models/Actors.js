@@ -17,6 +17,23 @@ const ActorSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    facebook: {
+        type: String,
+        required: false,
+    },
+    instagram: {
+        type: String,
+        required: false,
+    },
+    twitter: {
+        type: String,
+        required: false,
+    },
+    imdb: {
+        type: String,
+        required: false,
+    },
+    
 }, {
     timestamps: true
 });

@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Router>
-        {/* <AccessibleNavigationAnnouncer /> */}
+        <AccessibleNavigationAnnouncer />
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/create-account" component={CreateAccount} />
