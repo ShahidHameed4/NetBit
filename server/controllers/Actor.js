@@ -3,12 +3,16 @@ import Actor from "../models/Actors.js";
 class ActorController {
   // Create a new actor
   static createActor(req, res) {
-    const { name, age, image, bio } = req.body;
+    const { name, age, image, bio,facebook,instagram,twitter,imdb } = req.body;
     const newActor = new Actor({
       name,
       age,
       image,
       bio,
+      facebook,
+      instagram,
+      twitter,
+      imdb
     });
 
     newActor
