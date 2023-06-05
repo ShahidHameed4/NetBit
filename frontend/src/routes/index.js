@@ -11,6 +11,10 @@ const Tables = lazy(() => import('../pages/Tables'))
 const Page404 = lazy(() => import('../pages/404'))
 const Blank = lazy(() => import('../pages/Blank'))
 
+const ActorAdd = lazy(() => import('../pages/Actor/ActorAdd'))
+
+const VideoAdd = lazy(() => import('../pages/Videos/VideoAdd'))
+
 /**
  * ⚠ These are internal routes!
  * They will be rendered inside the app, using the default `containers/Layout`.
@@ -30,6 +34,15 @@ const routes = [
     path: '/forms',
     component: Forms,
   },
+  {
+    path: '/ActorAdd',
+    component: ActorAdd,
+  },
+  {
+    path: '/VideoAdd',
+    component: VideoAdd,
+  },
+
   {
     path: '/cards',
     component: Cards,

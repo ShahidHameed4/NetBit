@@ -17,6 +17,25 @@ const routes = [
     name: 'Forms',
   },
   {
+    icon: 'FormsIcon',
+    name: 'Actors',
+    routes: [
+      // submenu
+      {
+        path: '/app/ActorAdd',
+        name: 'Add Actor',
+      },
+      {
+        path: '/app/ActorManage',
+        name: 'Manage Actors',
+      },
+      
+      
+    ],
+  },
+
+
+  {
     path: '/app/cards',
     icon: 'CardsIcon',
     name: 'Cards',
