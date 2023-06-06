@@ -33,6 +33,23 @@ const routes = [
       
     ],
   },
+  {
+    icon: 'ModalsIcon',
+    name: 'Videos',
+    routes: [
+      // submenu
+      {
+        path: '/app/VideoAdd',
+        name: 'Add Video',
+      },
+      {
+        path: '/app/ActorManage',
+        name: 'Manage Videos',
+      },
+      
+      
+    ],
+  },
 
 
   {
