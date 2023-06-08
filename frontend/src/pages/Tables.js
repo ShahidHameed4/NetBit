@@ -53,11 +53,53 @@ function Tables() {
     setPageTable2(p)
   }
 
+
+  useEffect(() => {
+    const fetchActors = async () => {
+      try {
+        const accessToken = localStorage.getItem('accessToken');
+
+        const response = await fetch('http://localhost:8800/api/actor/allActors', {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+
+        const data = await response.json();
+        setDataTable2(data);
+      } catch (error) {
+        console.error('Error fetching actors:', error);
+      }
+    };
+
+    fetchActors();
+  }, []);
+
   // on page change, load new sliced data
   // here you would make another server request for new data
   useEffect(() => {
-    setDataTable1(response.slice((pageTable1 - 1) * resultsPerPage, pageTable1 * resultsPerPage))
-  }, [pageTable1])
+    const fetchTableData1 = async () => {
+      try {
+       
+        const response = await fetch('http://localhost:8800/api/actor/allActors', {
+          headers: {
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${localStorage.getItem("adminToken")}`,
+          },
+        });
+        const data = await response.json();
+        setDataTable1(data.slice((pageTable1 - 1) * resultsPerPage, pageTable1 * resultsPerPage));
+
+        console.log(dataTable1);
+      } catch (error) {
+        console.error('Error fetching data for table 1:', error);
+      }
+    };
+  
+    fetchTableData1();
+  }, [pageTable1]);
+  
 
   // on page change, load new sliced data
   // here you would make another server request for new data
@@ -130,7 +172,7 @@ function Tables() {
             </tr>
           </TableHeader>
           <TableBody>
-            {dataTable2.map((user, i) => (
+            {dataTable1.map((user, i) => (
               <TableRow key={i}>
                 <TableCell>
                   <div className="flex items-center text-sm">
@@ -173,6 +215,73 @@ function Tables() {
           />
         </TableFooter>
       </TableContainer>
+
+
+
+
+
+
+
+      {/* <SectionTitle>Actors Data</SectionTitle>
+      <TableContainer className="mb-8">
+        <Table>
+          <TableHeader>
+            <tr>
+              <TableCell>Name</TableCell>
+              <TableCell>Age</TableCell>
+              <TableCell>Image</TableCell>
+              <TableCell>Bio</TableCell>
+              <TableCell>Actions</TableCell>
+            </tr>
+          </TableHeader>
+          <TableBody>
+            {dataTable2.map((user, i) => (
+              <TableRow key={i}>
+                <TableCell>
+                  <div className="flex items-center text-sm">
+                    <Avatar className="hidden mr-3 md:block" src={user.avatar} alt="User avatar" />
+                    <div>
+                      <p className="font-semibold">{user.name}</p>
+                    </div>
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <span className="text-sm">$ {user.amount}</span>
+                </TableCell>
+                <TableCell>
+                  <Badge type={user.status}>{user.status}</Badge>
+                </TableCell>
+                <TableCell>
+                  <span className="text-sm">{new Date(user.date).toLocaleDateString()}</span>
+                </TableCell>
+                <TableCell>
+                  <div className="flex items-center space-x-4">
+                    <Button layout="link" size="icon" aria-label="Edit">
+                      <EditIcon className="w-5 h-5" aria-hidden="true" />
+                    </Button>
+                    <Button layout="link" size="icon" aria-label="Delete">
+                      <TrashIcon className="w-5 h-5" aria-hidden="true" />
+                    </Button>
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <TableFooter>
+          <Pagination
+            totalResults={totalResults}
+            resultsPerPage={resultsPerPage}
+            onChange={onPageChangeTable2}
+            label="Table navigation"
+          />
+        </TableFooter>
+      </TableContainer> */}
+
+
+
+
+
     </>
   )
 }

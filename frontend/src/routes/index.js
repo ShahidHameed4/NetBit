@@ -11,16 +11,11 @@ const Tables = lazy(() => import('../pages/Tables'))
 const Page404 = lazy(() => import('../pages/404'))
 const Blank = lazy(() => import('../pages/Blank'))
 
-/**
- * ⚠ These are internal routes!
- * They will be rendered inside the app, using the default `containers/Layout`.
- * If you want to add a route to, let's say, a landing page, you should add
- * it to the `App`'s router, exactly like `Login`, `CreateAccount` and other pages
- * are routed.
- *
- * If you're looking for the links rendered in the SidebarContent, go to
- * `routes/sidebar.js`
- */
+const ActorAdd = lazy(() => import('../pages/Actor/ActorAdd'))
+const ActorTable = lazy(() => import('../pages/Actor/ActorTable'))
+
+const VideoAdd = lazy(() => import('../pages/Videos/VideoAdd'))
+const VideoTable = lazy(() => import('../pages/Videos/VideoTable'))
 const routes = [
   {
     path: '/dashboard', // the url
@@ -30,6 +25,24 @@ const routes = [
     path: '/forms',
     component: Forms,
   },
+  {
+    path: '/ActorAdd',
+    component: ActorAdd,
+  },
+  {
+    path: '/ActorsAll',
+    component: ActorTable,
+  },
+  
+  {
+    path: '/VideoAdd',
+    component: VideoAdd,
+  },
+  {
+    path: '/VideosAll',
+    component: VideoTable,
+  },
+
   {
     path: '/cards',
     component: Cards,

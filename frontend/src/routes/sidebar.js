@@ -17,6 +17,42 @@ const routes = [
     name: 'Forms',
   },
   {
+    icon: 'FormsIcon',
+    name: 'Actors',
+    routes: [
+      // submenu
+      {
+        path: '/app/ActorAdd',
+        name: 'Add Actor',
+      },
+      {
+        path: '/app/ActorsAll',
+        name: 'Manage Actors',
+      },
+      
+      
+    ],
+  },
+  {
+    icon: 'ModalsIcon',
+    name: 'Videos',
+    routes: [
+      // submenu
+      {
+        path: '/app/VideoAdd',
+        name: 'Add Video',
+      },
+      {
+        path: '/app/ActorManage',
+        name: 'Manage Videos',
+      },
+      
+      
+    ],
+  },
+
+
+  {
     path: '/app/cards',
     icon: 'CardsIcon',
     name: 'Cards',

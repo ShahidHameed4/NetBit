@@ -73,6 +73,26 @@ function Forms() {
         </Label>
 
         <Label className="mt-4">
+          <span>Image</span>
+          <Input
+  type="file"
+  accept="image/*"
+  className="mt-1"
+  // onChange={handleFileSelect}
+/>
+
+{file && (
+  <div className="mt-4">
+    <span>Upload Progress:</span>
+    <progress value={uploadProgress} max="100" />
+    <span>{uploadProgress}%</span>
+  </div>
+)}
+        </Label>
+
+
+
+        <Label className="mt-4">
           <span>Age</span>
           <Input
             className="mt-1"
@@ -82,15 +102,7 @@ function Forms() {
           />
         </Label>
 
-        <Label className="mt-4">
-          <span>Image</span>
-          <Input
-            className="mt-1"
-            placeholder="Image URL"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-          />
-        </Label>
+        
 
         <Label className="mt-4">
           <span>Bio</span>
@@ -133,24 +145,7 @@ function Forms() {
           />
         </Label>
 
-        <Label className="mt-4">
-          <span>Image</span>
-          <Input
-  type="file"
-  accept="image/*"
-  className="mt-1"
-  // onChange={handleFileSelect}
-/>
-
-{file && (
-  <div className="mt-4">
-    <span>Upload Progress:</span>
-    <progress value={uploadProgress} max="100" />
-    <span>{uploadProgress}%</span>
-  </div>
-)}
-        </Label>
-
+       
 
 
         <Label className="mt-4">

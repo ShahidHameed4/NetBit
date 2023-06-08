@@ -58,6 +58,15 @@ export const getVideo = async (req, res, next) => {
   }
 };
 
+export const getAll = async (req, res, next) => {
+  try {
+    const video = await Video.find();
+    res.status(200).json(video);
+  } catch (err) {
+    next(err);
+  }
+};
+
 export const addView = async (req, res, next) => {
   try {
     await Video.findByIdAndUpdate(req.params.id, {
