@@ -52,6 +52,11 @@ app.use((err, req, res, next) => {
   });
 });
 
+app.get("/", (req, res) => {
+  res.send("Hello to Youtube API");
+
+});
+
 app.listen(process.env.port || 8800 , () => {
   connect();
   console.log("Connected to Server");
