@@ -4,7 +4,16 @@ import PageTitle from '../../components/Typography/PageTitle'
 import SectionTitle from '../../components/Typography/SectionTitle'
 import { Input, HelperText, Label, Select, Textarea ,Button } from '@windmill/react-ui'
 
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
+
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+import app from "../../firebase";
+
 
 
 function Forms() {
@@ -20,6 +29,61 @@ function Forms() {
   const [file, setFile] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+  const [img, setImg] = useState(undefined);
+  const [video, setVideo] = useState(undefined);
+  const [imgPerc, setImgPerc] = useState(0);
+  const [videoPerc, setVideoPerc] = useState(0);
+  const [inputs, setInputs] = useState({});
+
+  const uploadFile = (file, urlType) => {
+    const storage = getStorage(app);
+    const fileName = new Date().getTime() + file.name;
+    const storageRef = ref(storage, fileName);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        urlType === "imgUrl" ? setImgPerc(Math.round(progress)) : setVideoPerc(Math.round(progress));
+        switch (snapshot.state) {
+          case "paused":
+            console.log("Upload is paused");
+            break;
+          case "running":
+            console.log("Upload is running");
+            break;
+          default:
+            break;
+        }
+      },
+      (error) => {},
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log("File available at", downloadURL);
+
+          urlType === "imgUrl" ? setImage(downloadURL): setImage(downloadURL);
+
+          setInputs((prev) => {
+            return { ...prev, [urlType]: downloadURL };
+          });
+        });
+      }
+    );
+  };
+
+  useEffect(() => {
+    video && uploadFile(video , "videoUrl");
+  }, [video]);
+
+  useEffect(() => {
+    img && uploadFile(img, "imgUrl");
+  }, [img]);
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,6 +103,17 @@ function Forms() {
     // Send the form data to the backend
     // You need to implement this part
 
+
+    fetch("http://localhost:8800/api/actor/addactor", {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("adminToken")}`,
+      },
+      body: JSON.stringify(formData),
+    })
+
+
     console.log(formData);
 
     setName('');
@@ -55,7 +130,6 @@ function Forms() {
   return (
     <>
       <PageTitle>Actor</PageTitle>
-      {/* <CTA /> */}
       <SectionTitle>Add Actor</SectionTitle>
 
       <form onSubmit={handleSubmit}>
@@ -71,22 +145,19 @@ function Forms() {
         </Label>
 
         <Label className="mt-4">
-          <span>Image</span>
+            <span>Image</span>
+            {imgPerc > 0 ? (
+          "Uploading:" + imgPerc
+        ) : (
           <Input
-  type="file"
-  accept="image/*"
-  className="mt-1"
-  // onChange={handleFileSelect}
-/>
-
-{file && (
-  <div className="mt-4">
-    <span>Upload Progress:</span>
-    <progress value={uploadProgress} max="100" />
-    <span>{uploadProgress}%</span>
-  </div>
-)}
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImg(e.target.files[0])}
+          />
+        )}
         </Label>
+
+
 
 
 

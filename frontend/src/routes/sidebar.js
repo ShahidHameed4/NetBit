@@ -26,7 +26,7 @@ const routes = [
         name: 'Add Actor',
       },
       {
-        path: '/app/ActorManage',
+        path: '/app/ActorsAll',
         name: 'Manage Actors',
       },
       

@@ -19,7 +19,7 @@ import { useEffect } from 'react'
 
 function Forms() {
 
-  const [userId, setUserId] = useState('');
+  
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [imgUrl, setImgUrl] = useState('');
@@ -117,7 +117,7 @@ const handleImageUpload = (e) => {
     e.preventDefault();
 
     const formData = {
-      userId,
+      
       title,
       desc,
       imgUrl,
@@ -153,7 +153,7 @@ const handleImageUpload = (e) => {
     console.log(formData);
 
     // Reset the form inputs
-    setUserId('');
+    
     setTitle('');
     setDesc('');
     setImgUrl('');
