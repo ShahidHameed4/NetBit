@@ -36,6 +36,8 @@ export default function Login() {
         localStorage.setItem('adminToken', token);
 
         console.log('Success:', data);
+
+        window.location.href = '/app';
         
       })
       .catch((error) => {

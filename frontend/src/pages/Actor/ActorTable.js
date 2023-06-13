@@ -66,10 +66,10 @@ function Tables() {
 
   return (
     <>
-      <PageTitle>Tables</PageTitle>
+      <PageTitle>Manage Actors</PageTitle>
 
     
-      <SectionTitle>Table with actions</SectionTitle>
+      <SectionTitle>Data</SectionTitle>
       <TableContainer className="mb-8">
         <Table>
           <TableHeader>

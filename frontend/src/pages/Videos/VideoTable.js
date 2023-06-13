@@ -47,8 +47,8 @@ function Tables() {
 
   return (
     <>
-      <PageTitle>Tables</PageTitle>
-      <SectionTitle>Table with actions</SectionTitle>
+      <PageTitle>Videos</PageTitle>
+      <SectionTitle>Data</SectionTitle>
       <TableContainer className="mb-8">
         <Table>
           <TableHeader>
